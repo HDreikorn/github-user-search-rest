@@ -1,13 +1,19 @@
 import "./App.css";
 import SearchContainer from "./searchContainer";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+//React Query Config
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
+    <QueryClientProvider client={queryClient}>
       <section className="App h-screen w-full flex justify-center p-4 bg-gradient-to-r from-green-400 to-blue-500">
         <SearchContainer />
       </section>
-    </div>
+      <ReactQueryDevtools initialIsOpen />
+    </QueryClientProvider>
   );
 }
 
