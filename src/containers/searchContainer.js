@@ -7,7 +7,7 @@ export default function SearchContainer() {
   const [searchStr, setSearchStr] = useState("");
   const [page, setPage] = useState(0);
   const queryClient = useQueryClient();
-  const { data, isLoading, refetch } = useQuery(
+  const { data, isLoading } = useQuery(
     ["users", page],
     async () => fetchSearchUsers(searchStr, page),
     {
@@ -15,6 +15,7 @@ export default function SearchContainer() {
     }
   );
 
+  // Prefetching
   useEffect(() => {
     queryClient.prefetchQuery(["users", page + 1], () =>
       fetchSearchUsers(searchStr, page + 1)
